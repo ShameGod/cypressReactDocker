@@ -1,0 +1,16 @@
+version: '3.2'
+services:
+  reactapp:
+    build: ../frontend
+    ports:
+      - "3000:3000"
+    
+
+  cypress:
+    image: "cypress/included:4.4.0"
+    build: .
+    depends_on:
+      - reactapp
+
+    command: npx cypress run
+    working_dir: /
